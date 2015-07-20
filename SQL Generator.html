@@ -22,7 +22,7 @@
 
 <body class="anim">
 
-  <div class="container anim" style="max-width: 750px; margin: 0 auto;">
+  <div class="container" style="max-width: 750px; margin: 0 auto;">
     <h1 class="header_text anim">Query generator</h1>
 
     <br />
@@ -30,7 +30,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <textarea id="query_temp" type="text" class="form-control input_area text_selection" placeholder="SQL Query.."></textarea>
+        <textarea id="query_temp" type="text" rows="2" class="form-control input_area text_selection anim" placeholder="SQL Query.."></textarea>
       </div>
     </div>
     <br />
@@ -55,7 +55,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <textarea id="result_area" class="result_area text_selection" onclick="this.select()" name="name" rows="8" cols="90" readonly></textarea>
+        <textarea id="result_area" class="result_area text_selection anim" onclick="this.select()" name="name" rows="8" readonly></textarea>
       </div>
     </div>
     <br />
@@ -118,7 +118,6 @@
     border-color: rgb(49, 41, 68);
     color: #c4c4c4;
     border-radius: 5px;
-    height: 45px;
     max-height: 150px;
     min-width: 100%;
     max-width: 100%;
@@ -161,6 +160,13 @@
     -moz-transition: all .8s ease-in-out;
     -o-transition: all .8s ease-in-out;
     transition: all .8s ease-in-out;
+  }
+  
+  .fast_anim {
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
   }
 
   .gen_btn {
