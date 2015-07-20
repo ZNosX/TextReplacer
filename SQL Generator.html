@@ -226,7 +226,7 @@
           saveArray(fileArray);
           console.log("FILEARRAYSIZE: " + fileArray.length);
           var csvvalue = fileArray[0].split(",");
-          if(csvvalue.length <= 0) csvvalue = fileArray[0].split(/\t/g);
+          if(csvvalue.length <= 1) csvvalue = fileArray[0].split(/\t/);
           // var inputrad = "";
           // for (var i = 0; i < csvvalue.length; i++) {
           //   var temp = csvvalue[i];
@@ -290,13 +290,13 @@
   function generateResult() {
     var finalResult = "";
     var rowResult = "";
-    var queryTemp = query + "\n";
-    console.log("FINAL TEMPLATE: " + queryTemp);
+    //var queryTemp = query + "\n";
+    console.log("FINAL TEMPLATE: " + query);
     console.log("FINAL FILEARRAYSIZE: " + fileArray.length);
     for (var a = 0; a < fileArray.length; a++) {
-      var rowValue = "" + queryTemp;
+      var rowValue = "" + query;
       var paramArray = fileArray[a].split(",");
-      if(paramArray.length <= 0) paramArray = fileArray[a].split(/\t/g);
+      if(paramArray.length <= 1) paramArray = fileArray[a].split(/\t/g);
       for (var b = 0; b < rp_array.length; b++) {
         console.log(b + " FINAL rp_array: " + rp_array[b]);
         console.log(b + " FINAL paramArray: " + paramArray[b]);
@@ -306,7 +306,7 @@
         rowValue = rowValue.replace(re, paramArray[b]);
       }
       console.log(a + "FINAL RPW: " + rowValue);
-      finalResult += rowValue;
+      finalResult += rowValue + "\n";
       console.log(a + "FINAL ROW: " + rowValue);
     }
     $('#result_area').val(finalResult);
