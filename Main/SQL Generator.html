@@ -59,7 +59,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <textarea id="result_area" class="result_area text_selection anim" onclick="this.select()" name="name" rows="8" readonly placeholder="Result to be displayed.."></textarea>
+        <textarea id="result_area" class="result_area text_selection fast_anim" onclick="this.select()" name="name" rows="8" readonly placeholder="Result to be displayed.."></textarea>
       </div>
     </div>
     <br />
@@ -113,7 +113,7 @@
   }
 
   .upload:hover {
-    background-color: #383a53;
+    background-color: #34364e;
     border-radius: 5px;
   }
 
@@ -127,6 +127,10 @@
     max-width: 100%;
   }
 
+  .input_area:hover {
+    background-color: rgba(40, 35, 50, 0.55);
+  }
+
   .result_area {
     background-color: rgba(40, 35, 50, 0.9);
     border-color: rgb(49, 41, 68);
@@ -135,7 +139,12 @@
     max-width: 100%;
     max-height: 300px;
     border-radius: 5px;
+    border: none;
     padding: 10px 12px;
+  }
+
+  .result_area:hover {
+    background-color: rgba(40, 35, 50, 0.55);
   }
 
   .btn-primary {
@@ -166,10 +175,10 @@
   }
 
   .fast_anim {
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
   }
 
   .gen_btn {
@@ -326,7 +335,7 @@
     var temp2 = divider.replace(reg, '\\$');
     return temp2;
   }
-  </script>
+</script>
 
 </body>
 
