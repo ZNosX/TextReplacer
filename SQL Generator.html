@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>SQL Generator</title>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -27,7 +27,7 @@
 <body class="anim">
 
   <div class="container" style="max-width: 750px; margin: 0 auto;">
-    <h1 class="header_text anim">Query generator</h1>
+    <h1 class="header_text anim">SQL GENERATOR</h1>
 
     <br />
     <hr class="divider" />
@@ -59,7 +59,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <textarea id="result_area" class="result_area text_selection anim" onclick="this.select()" name="name" rows="8" readonly></textarea>
+        <textarea id="result_area" class="result_area text_selection anim" onclick="this.select()" name="name" rows="8" readonly placeholder="Result to be displayed.."></textarea>
       </div>
     </div>
     <br />
@@ -135,6 +135,7 @@
     max-width: 100%;
     max-height: 300px;
     border-radius: 5px;
+    padding: 10px 12px;
   }
 
   .btn-primary {
