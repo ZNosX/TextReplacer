@@ -11,6 +11,10 @@
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+  <script src="http://cdn.bootcss.com/sweetalert/1.0.1/sweetalert.min.js"></script>
+
+  <link href="http://cdn.bootcss.com/sweetalert/1.0.1/sweetalert.min.css" rel="stylesheet">
+
   <!--
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
 
@@ -161,7 +165,7 @@
     -o-transition: all .8s ease-in-out;
     transition: all .8s ease-in-out;
   }
-  
+
   .fast_anim {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -206,11 +210,11 @@
     $('#submitBtn').click(function() {
       rp_count = getParamNumber();
       console.log("RP_COUNT: " + rp_count);
-      if (rp_count == -1) alert("Please enter a query sample");
-      else if (rp_count == 0) alert("illigal query sample");
-      else if (!checkFileSelected()) alert("Please upload a file");
-      else if (file_count == 0) alert("Illigal file");
-      else if (file_count != rp_count) alert("NOT MATCH");
+      if (rp_count == -1) sweetAlert("Oops...", "Please enter a query sample", "error");
+      else if (rp_count == 0) sweetAlert("Oops...", "Illigal query sample", "error");
+      else if (!checkFileSelected()) sweetAlert("Oops...", "Please select a .csv file", "error");
+      else if (file_count == 0) sweetAlert("Oops...", "Illigal file", "error");
+      else if (file_count != rp_count) sweetAlert("Oops...", "Parameters don't match between files and query template", "error");
       else {
         // every check passed, ready to proceed
         generateResult();
@@ -232,7 +236,7 @@
           saveArray(fileArray);
           console.log("FILEARRAYSIZE: " + fileArray.length);
           var csvvalue = fileArray[0].split(",");
-          if(csvvalue.length <= 1) csvvalue = fileArray[0].split(/\t/);
+          if (csvvalue.length <= 1) csvvalue = fileArray[0].split(/\t/);
           // var inputrad = "";
           // for (var i = 0; i < csvvalue.length; i++) {
           //   var temp = csvvalue[i];
@@ -288,7 +292,6 @@
         count = rp_array.length;
         //console.log("COUNT: " + count);
       }
-
       return count;
     }
   }
@@ -302,7 +305,7 @@
     for (var a = 0; a < fileArray.length; a++) {
       var rowValue = "" + query;
       var paramArray = fileArray[a].split(",");
-      if(paramArray.length <= 1) paramArray = fileArray[a].split(/\t/g);
+      if (paramArray.length <= 1) paramArray = fileArray[a].split(/\t/g);
       for (var b = 0; b < rp_array.length; b++) {
         console.log(b + " FINAL rp_array: " + rp_array[b]);
         console.log(b + " FINAL paramArray: " + paramArray[b]);
