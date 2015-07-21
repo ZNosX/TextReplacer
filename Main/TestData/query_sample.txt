@@ -1,1 +1,3 @@
 SELECT $1$, $2$ FROM temp.db WITH (NOLOCK) where $1$ = '$3$'
+
+EXEC dbo.Client_Quick_Insert_Or_Update_FIS @Card_Number = '$1$', @Surname = '$2$', @First_Name = '$3$', @Street_Address = '$4$', @City = '$5$', @State_Code = '$6$', @ZIP_Code = '$7$', @Country_ID = $8$, @SSNSIN = $9$,   @Force_Update = $10$
