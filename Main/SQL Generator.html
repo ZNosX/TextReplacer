@@ -224,7 +224,7 @@
       else if (rp_count == 0) sweetAlert("Oops...", "Illigal query sample", "error");
       else if (!checkFileSelected()) sweetAlert("Oops...", "Please select a .csv file", "error");
       else if (file_row_keyword_count == 0) sweetAlert("Oops...", "Illigal file", "error");
-      else if (file_row_keyword_count != rp_count) sweetAlert("Oops...", "Parameters don't match between files and query template\n\n" + rp_count + " / " + file_row_keyword_count + " valid counts", "error");
+      else if (file_row_keyword_count < rp_count) sweetAlert("Oops...", "Parameters don't match between files and query template\n\n" + rp_count + " / " + file_row_keyword_count + " valid counts", "error");
       else {
         // every check passed, ready to proceed
         //generateResult();
