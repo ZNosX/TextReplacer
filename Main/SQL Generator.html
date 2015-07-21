@@ -219,7 +219,7 @@
 
     $('#submitBtn').click(function() {
       rp_count = getMaxParamNumber();
-      console.log("RP_COUNT: " + rp_count);
+      //console.log("RP_COUNT: " + rp_count);
       if (rp_count == -1) sweetAlert("Oops...", "Please enter a query sample", "error");
       else if (rp_count == 0) sweetAlert("Oops...", "Illigal query sample", "error");
       else if (!checkFileSelected()) sweetAlert("Oops...", "Please select a .csv file", "error");
@@ -244,9 +244,9 @@
         var reader = new FileReader();
         reader.onload = function(e) {
           file_row_array = e.target.result.split("\n");
-          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa:" + file_row_array);
+          //console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa:" + file_row_array);
           saveArray(file_row_array);
-          console.log("file_row_arraySIZE: " + file_row_array.length);
+          //console.log("file_row_arraySIZE: " + file_row_array.length);
           var file_row_keyword_array = file_row_array[0].split(",");
           if (file_row_keyword_array.length <= 1) file_row_keyword_array = file_row_array[0].split(/\t/);
           // var inputrad = "";
@@ -255,16 +255,16 @@
           //   var inputrad = inputrad + " " + temp;
           // }
           file_row_keyword_count = file_row_keyword_array.length;
-          console.log("file_row_keyword_count: " + file_row_keyword_count);
+          //console.log("file_row_keyword_count: " + file_row_keyword_count);
 
           // $("#csvimporthint").html(inputrad);
           // $("#csvimporthinttitle").show();
         };
         reader.readAsText(e.target.files.item(0));
-        console.log("file_row_arraySIZE: " + file_row_array.length);
+        //console.log("file_row_arraySIZE: " + file_row_array.length);
       }
       return true;
-      console.log("file_row_arraySIZE: " + file_row_array.length);
+      //console.log("file_row_arraySIZE: " + file_row_array.length);
     });
   });
 
@@ -280,7 +280,7 @@
     file_row_keyword_count = file_row_keyword_array.length;
 
 
-    console.log("file_row_arraySIZE: " + file_row_array.length);
+    //console.log("file_row_arraySIZE: " + file_row_array.length);
   }
 
   function checkFileSelected() {
@@ -300,23 +300,23 @@
       var tempMax = 0;
       var max = 0;
 
-      console.log("QUERY: " + query);
+      //console.log("QUERY: " + query);
 
       match = query.match(/\$\d+\$/g);
-      console.log("MATCH: " + match);
+      //console.log("MATCH: " + match);
 
       if (match !== null) {
         for (var z = 0; z < match.length; z++) {
-          console.log("match[z]:" + match[z]);
-          console.log("match[z] SUB:" + match[z].substring(1, match[z].length - 1));
+          //console.log("match[z]:" + match[z]);
+          //console.log("match[z] SUB:" + match[z].substring(1, match[z].length - 1));
           tempMax = parseInt(match[z].substring(1, match[z].length - 1));
-          console.log("tempMax: " + tempMax + " Max: " + max + " " + (max < tempMax));
+          //console.log("tempMax: " + tempMax + " Max: " + max + " " + (max < tempMax));
           if (max < tempMax) {
             max = tempMax;
-            console.log("max inloop: " + max);
+            //console.log("max inloop: " + max);
           }
         }
-        console.log("max: " + max);
+        //console.log("max: " + max);
         return max;
       }
       return 0;
@@ -332,10 +332,10 @@
       var match = "";
       var count = 0;
 
-      console.log("QUERY: " + query);
+      //console.log("QUERY: " + query);
 
       match = query.match(/\$\d+\$/g);
-      console.log("MATCH: " + match);
+      //console.log("MATCH: " + match);
 
       if (match !== null) {
 
@@ -351,23 +351,26 @@
   function generateResultNEW() {
     var finalResult = "";
     var rowResult = "";
-    console.log("file_row_array: " + file_row_array);
+    console.log("***FILE ROW COUNT: " + file_row_array.length);
     for (var a = 0; a < file_row_array.length; a++) {
       var rowValue = "" + query;
-      var paramArray = file_row_array[a].split(",");
-      if (paramArray.length <= 1) paramArray = file_row_array[a].split(/\t/g);
-      console.log("paramArray: " + paramArray + " " + paramArray[0]);
-
-      // issue: cannot read file_row_keyword_count here
-      for (var b = 0; b < file_row_keyword_count; b++) {
-        //var re = RegExp(regulateDivider(rp_array[b]), 'gi');
-        console.log("KEYWORD: " + b);
-        var re = toRegKeyword(b + 1);
-        rowValue = rowValue.replace(re, paramArray[b]);
+      var file_row_value = file_row_array[a].trim();
+      if (file_row_value) {
+        var paramArray = file_row_value.split(",");
+        if (paramArray.length <= 1){
+          console.log("SPLIT AGAIN");
+          paramArray = file_row_value.split(/\t+/g);
+        }
+        console.log("ROW COUNT: " + paramArray.length);
+        console.log("ROW: -" + paramArray[paramArray.length-1]+'-');
+        //if(paramArray.length > 1)
+        for (var b = 0; b < file_row_keyword_count; b++) {
+          var re = toRegKeyword(b + 1);
+          rowValue = rowValue.replace(re, paramArray[b]);
+        }
+        finalResult += '-- Num: ' + (a + 1) + '\n';
+        finalResult += rowValue + "\n\n";
       }
-      finalResult += '-- Num:' + (a + 1) + '\n';
-      finalResult += rowValue + "\n\n";
-      console.log("FINAL RESULT: " + finalResult);
     }
     $('#result_area').val(finalResult);
   }
@@ -380,23 +383,23 @@
     var finalResult = "";
     var rowResult = "";
     //var queryTemp = query + "\n";
-    console.log("FINAL TEMPLATE: " + query);
-    console.log("FINAL file_row_arraySIZE: " + file_row_array.length);
+    //console.log("FINAL TEMPLATE: " + query);
+    //console.log("FINAL file_row_arraySIZE: " + file_row_array.length);
     for (var a = 0; a < file_row_array.length; a++) {
       var rowValue = "" + query;
       var paramArray = file_row_array[a].split(",");
       if (paramArray.length <= 1) paramArray = file_row_array[a].split(/\t/g);
       for (var b = 0; b < rp_array.length; b++) {
-        console.log(b + " FINAL rp_array: " + rp_array[b]);
-        console.log(b + " FINAL paramArray: " + paramArray[b]);
+        //console.log(b + " FINAL rp_array: " + rp_array[b]);
+        //console.log(b + " FINAL paramArray: " + paramArray[b]);
 
         var re = RegExp(regulateDivider(rp_array[b]), 'gi');
 
         rowValue = rowValue.replace(re, paramArray[b]);
       }
-      console.log(a + "FINAL RPW: " + rowValue);
+      //console.log(a + "FINAL RPW: " + rowValue);
       finalResult += rowValue + "\n";
-      console.log(a + "FINAL ROW: " + rowValue);
+      //console.log(a + "FINAL ROW: " + rowValue);
     }
     $('#result_area').val(finalResult);
   }
@@ -407,7 +410,7 @@
     var temp2 = divider.replace(reg, '\\$');
     return temp2;
   }
-  </script>
+</script>
 
 </body>
 
