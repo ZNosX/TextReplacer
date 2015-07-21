@@ -351,18 +351,18 @@
   function generateResultNEW() {
     var finalResult = "";
     var rowResult = "";
-    console.log("***FILE ROW COUNT: " + file_row_array.length);
+    //console.log("***FILE ROW COUNT: " + file_row_array.length);
     for (var a = 0; a < file_row_array.length; a++) {
       var rowValue = "" + query;
       var file_row_value = file_row_array[a].trim();
       if (file_row_value) {
         var paramArray = file_row_value.split(",");
         if (paramArray.length <= 1){
-          console.log("SPLIT AGAIN");
+          //console.log("SPLIT AGAIN");
           paramArray = file_row_value.split(/\t+/g);
         }
-        console.log("ROW COUNT: " + paramArray.length);
-        console.log("ROW: -" + paramArray[paramArray.length-1]+'-');
+        //console.log("ROW COUNT: " + paramArray.length);
+        //console.log("ROW: -" + paramArray[paramArray.length-1]+'-');
         //if(paramArray.length > 1)
         for (var b = 0; b < file_row_keyword_count; b++) {
           var re = toRegKeyword(b + 1);
