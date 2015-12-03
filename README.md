@@ -1,3 +1,5 @@
-# SQLGenerator
+# TextReplace
 
-Client side one page SQL query generator based on template with keyword [$digits$]
+Client side SINGLE PAGE text replacer based on template with keyword [$digits$]
+
+Detail sample pieces are included inside the package
